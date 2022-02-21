@@ -11,15 +11,9 @@ export class UserService {
   ) {}
 
   async create(data) {
-    try {
-      console.log(data);
-
-      const user = this.usersRepository.create(data);
+     const user = this.usersRepository.create(data);
       await this.usersRepository.save(data);
       return user;
-    } catch (err) {
-      throw new Error(err);
-    }
   }
 
   async showAll() {
@@ -30,8 +24,12 @@ export class UserService {
     }
   }
 
-  async update(id, data) {
-    await this.usersRepository.update({ id }, data);
-    return await this.usersRepository.findOne({ id });
+  async findUserById(mail, password) {
+    try {
+      const matchUser = await this.usersRepository.findOne({mail, password})
+      return matchUser;
+    } catch(err) {
+      throw new Error(err);
+    }
   }
 }

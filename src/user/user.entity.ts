@@ -9,13 +9,13 @@ import {
 } from 'typeorm';
 
 @Entity('User')
-@Unique(['email'])
+@Unique(['mail'])
 export class UsersEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false, type: 'varchar', length: 200 })
-  email: string;
+  mail: string;
 
   @Column({ nullable: false })
   password: string;
