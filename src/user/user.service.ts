@@ -9,9 +9,6 @@ export class UserService {
     @InjectRepository(UsersEntity)
     private usersRepository: Repository<UsersEntity>,
   ) {}
-  async showAll() {
-    return await this.usersRepository.find();
-  }
 
   async create(data) {
     try {
@@ -23,5 +20,18 @@ export class UserService {
     } catch (err) {
       throw new Error(err);
     }
+  }
+
+  async showAll() {
+    try {
+      return await this.usersRepository.find();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async update(id, data) {
+    await this.usersRepository.update({ id }, data);
+    return await this.usersRepository.findOne({ id });
   }
 }

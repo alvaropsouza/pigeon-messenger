@@ -1,28 +1,17 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
+import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post('signin')
+  @Post('register')
+  @ApiResponse({ status: 200, description: 'User registered succesfully!' })
   async createUsers(@Body() data) {
     const user = await this.userService.create(data);
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'User created successfully',
-      user,
-    };
+    return user;
   }
 
   @Get('users')
@@ -32,6 +21,16 @@ export class UserController {
       statusCode: HttpStatus.OK,
       message: 'Users fetched successfully',
       users,
+    };
+  }
+
+  @Patch(':user')
+  async updateUser(id, data) {
+    await this.userService.update(id, data);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'User updated successfully',
     };
   }
 }
