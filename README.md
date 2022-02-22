@@ -54,7 +54,7 @@ Pigeon messenger is a backend focused repository proudly created with Nest Js an
 ## Run frontend application first
 
 ```bash
-$ git clone https://github.com/alvaropsouza/pigeon-messenger-frontend.git
+$ git clone https://github.com/alvaropsouza/pigeon-messenger-frontend/tree/master
 $ npm install
 $ npm run server
 ```
