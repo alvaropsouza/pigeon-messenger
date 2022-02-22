@@ -4,6 +4,8 @@ import { join } from 'path';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './configs/typeorm.config';
+import { AppGateway } from './app.gateway';
+
 
 @Module({
   imports: [
@@ -14,5 +16,6 @@ import { typeOrmConfig } from './configs/typeorm.config';
     }),
     UserModule,
   ],
+  providers: [AppGateway],
 })
 export class AppModule {}

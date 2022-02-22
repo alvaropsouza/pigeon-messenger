@@ -13,16 +13,17 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Request } from 'express';
-import { log } from 'console';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  async createUsers(@Body() body) {
+  async createUsers(@Body() body, @Response() response,) {
     try {
       const user = await this.userService.create(body);
+
+      response.redirect('http://localhost:5000/');
 
       return {
         statusCode: HttpStatus.OK,
@@ -48,12 +49,11 @@ export class UserController {
 
     if (user !== undefined) {
       Object.assign(cookie, {
-        path: 'http://localhost:5000/user/loginSuccess',
+        path: 'http://localhost:5050',
         logged: true,
         mail: mail,
       });
-
-      response.redirect(cookie.path);
+      response.redirect(cookie.path + `?name=${user.name}&mail=${user.mail}`);
     } else {
       response.redirect('http://localhost:5000/user/loginError');
     }

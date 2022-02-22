@@ -4,9 +4,9 @@ Pigeon messenger is a backend focused repository proudly created with Nest Js an
 
 ##### Backend features
 
-- [ ] Must register and sign in a user
+- [x] Must register and sign in a user
 - [ ] Must register message sender/time message was sent
-- [ ] Must run in port 5050
+- [x] Must run in port 5050
 - [ ] Must implement inbound and outbound messages with the following requirements:
   - [ ] Should contain methods/events to allow message subscription
   - [ ] Should allow user to unsubscribe messages
@@ -17,12 +17,11 @@ Pigeon messenger is a backend focused repository proudly created with Nest Js an
 
 ##### Frontend features
 
-- [ ] User login page
-- [ ] Show which user sent a message and when
-- [ ] Must run in port 5000
-- [ ] Must contain a field with sent/received messages
-- [ ] Must contain a message input
-
+- [x] User login page
+- [x] Show which user sent a message and when
+- [x] Must run in port 5000
+- [x] Must contain a field with sent/received messages
+- [x] Must contain a message input
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
@@ -52,13 +51,29 @@ Pigeon messenger is a backend focused repository proudly created with Nest Js an
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Run frontend application first
 
 ```bash
+$ git clone https://github.com/alvaropsouza/pigeon-messenger-frontend.git
 $ npm install
+$ npm run server
 ```
 
-## Running the app
+1. Server will run in localhost:5000
+2. Proceed to register > login > start using chat
+3. For test purposes, run another tab with another localhost:5000 and follow from the step 1 again
+4. message between tabs with different logins
+
+## Building the app
+
+```bash
+# development
+$ npm run build:server
+```
+
+## Running the backend app
+
+###### (Follow build step before)
 
 ```bash
 # development
@@ -69,19 +84,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Support

@@ -15,6 +15,9 @@ export class UsersEntity extends BaseEntity {
   id: string;
 
   @Column({ nullable: false, type: 'varchar', length: 200 })
+  name: string;
+
+  @Column({ nullable: false, type: 'varchar', length: 200 })
   mail: string;
 
   @Column({ nullable: false })
