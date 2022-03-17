@@ -11,9 +11,9 @@ export class UserService {
   ) {}
 
   async create(data) {
-     const user = this.usersRepository.create(data);
-      await this.usersRepository.save(data);
-      return user;
+    const user = this.usersRepository.create(data);
+    await this.usersRepository.save(data);
+    return user;
   }
 
   async showAll() {
@@ -26,9 +26,9 @@ export class UserService {
 
   async findUserById(mail, password) {
     try {
-      const matchUser = await this.usersRepository.findOne({mail, password})
+      const matchUser = await this.usersRepository.findOne({ mail, password });
       return matchUser;
-    } catch(err) {
+    } catch (err) {
       throw new Error(err);
     }
   }

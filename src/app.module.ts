@@ -6,7 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './configs/typeorm.config';
 import { AppGateway } from './app.gateway';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),

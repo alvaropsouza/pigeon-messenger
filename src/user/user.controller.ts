@@ -19,7 +19,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  async createUsers(@Body() body, @Response() response,) {
+  async createUsers(@Body() body, @Response() response) {
     try {
       const user = await this.userService.create(body);
 

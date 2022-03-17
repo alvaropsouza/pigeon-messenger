@@ -4,7 +4,6 @@ import * as session from 'express-session';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
-
 async function bootstrap() {
   const port = 5050;
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
