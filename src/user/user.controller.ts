@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Req,
   Response,
   HttpStatus,
@@ -13,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Request } from 'express';
+import bcrypt = require('bcryptjs');
 
 @Controller('user')
 export class UserController {
@@ -42,10 +42,13 @@ export class UserController {
     @Response() response,
   ) {
     const { mail, password } = request.body;
-
-    const user = await this.userService.findUserById(mail, password);
-
     const { cookie } = session;
+
+    const user = await this.userService.findUserById(mail);
+
+    if (!user || !bcrypt.compareSync(password, user.password)) {
+      response.redirect('http://localhost:5000/user/loginError');
+    }
 
     if (user !== undefined) {
       Object.assign(cookie, {
@@ -54,8 +57,6 @@ export class UserController {
         mail: mail,
       });
       response.redirect(cookie.path + `?name=${user.name}&mail=${user.mail}`);
-    } else {
-      response.redirect('http://localhost:5000/user/loginError');
     }
   }
 
